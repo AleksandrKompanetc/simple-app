@@ -5,6 +5,7 @@ function App() {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
 
   const fetchUsers = async () => {
     try {
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div style={{padding: '20px', fontFamily: 'Arial, sans-serif'}}>
+      
       <h1>User List</h1>
       {loading && <p>Loading data...</p>}
       {error && <p style={{color: 'red'}}>Error: {error}</p>}
