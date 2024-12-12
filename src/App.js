@@ -26,9 +26,13 @@ function App() {
     fetchUsers()
   }, [])
 
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <div style={{padding: '20px', fontFamily: 'Arial, sans-serif'}}>
-      
+
       <h1>User List</h1>
       {loading && <p>Loading data...</p>}
       {error && <p style={{color: 'red'}}>Error: {error}</p>}
