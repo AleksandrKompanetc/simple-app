@@ -11,6 +11,7 @@ const App = () => {
 
   const addUser = () => {
     if (newUser.name && newUser.email) {
+      setUsers([...users, {id: users.length + 1, ...newUser}])
       setNewUser({name: '', email: ''})
     }
     setUsers()
