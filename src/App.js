@@ -1,7 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './App.css'
 
 const App = () => {
+  const [users, setUsers] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedUser, setSelectedUser] = useState('')
+  const [darkMode, setDarkMode] = useState(false)
+  const [sortOrder, setSortOrder] = useState('asc')
+  const [newUser, setNewUser] = useState({name: '', email: ''})
+
+  const addUser = () => {
+    if (newUser.name && newUser.email) {
+      setNewUser({name: '', email: ''})
+    }
+    setUsers()
+  }
   return (
     <div style={{
       backgroundColor: '#fff',
@@ -41,7 +54,7 @@ const App = () => {
         <button onClick={addUser}>Add User</button>
       </div>
 
-      <button onClick={() => }>Sorting</button>
+      <button onClick={() => setSortOrder()}>Sorting</button>
     </div>
   )
 }
