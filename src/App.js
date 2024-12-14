@@ -22,6 +22,24 @@ const App = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
+
+      <div style={{marginTop: '10px'}}>
+        <input 
+          type="text"
+          placeholder='Name'
+          value={newUser.name}
+          onChange={(e) => setNewUser({...newUser, name: e.target.value})} 
+        />
+
+        <input 
+          type="email"
+          placeholder='Email'
+          value={newUser.email}
+          onChange={(e) => setNewUser({...newUser, email: e.target.value})} 
+        />
+
+        <button onClick={addUser}>Add User</button>
+      </div>
     </div>
   )
 }
