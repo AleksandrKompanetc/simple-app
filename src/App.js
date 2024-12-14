@@ -40,6 +40,8 @@ const App = () => {
 
         <button onClick={addUser}>Add User</button>
       </div>
+
+      <button onClick={() => }>Sorting</button>
     </div>
   )
 }
