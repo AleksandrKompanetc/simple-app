@@ -40,9 +40,9 @@ const App = () => {
   }
 
   const sortedUsers = [...users].sort((a, b) => 
-    sortOrder = 'asc' 
-    ? a.name.localCompare(b.name)
-    : b.name.localCompare(a.name)
+    sortOrder === 'asc' 
+    ? a.name.localeCompare(b.name)
+    : b.name.localeCompare(a.name)
   )
 
   const filteredUsers = sortedUsers.filter((user) => 
