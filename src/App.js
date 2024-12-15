@@ -93,8 +93,16 @@ const App = () => {
       </button>
 
       <ul style={{ listStyle: 'none', padding: 0 }}>
-        {users.map((user) => (
-          <li key={user.id}>
+        {filteredUsers.map((user) => (
+          <li key={user.id} 
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderBottom: '1px solid #ccc',
+                padding: '10px 0'
+              }}
+            >
             <span>{user.name}</span>
 
           </li>
