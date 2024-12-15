@@ -104,7 +104,7 @@ const App = () => {
               }}
             >
             <span>{user.name}</span>
-
+            <button onClick={() => setSelectedUser(user)}>Info</button>
           </li>
         ))}
       </ul>
