@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './App.css'
 
 const App = () => {
@@ -8,6 +8,24 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false)
   const [sortOrder, setSortOrder] = useState('asc')
   const [newUser, setNewUser] = useState({name: '', email: ''})
+
+  useEffect(() => {
+    const fetchUsers = async() => {
+      try {
+        const savedUsers = JSON.parse(localStorage.getItem('users'))
+        if (savedUsers) {
+          setUsers(savedUsers)
+        } else {
+          const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+          setUsers(response.data)
+        }
+      } catch(error) {
+        console.log('Error fetching users', error)
+      }
+    }
+
+    fetchUsers()
+  }, [])
 
   const addUser = () => {
     if (newUser.name && newUser.email) {
