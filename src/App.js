@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import axios from 'axios'
 import './App.css'
 
 const App = () => {
@@ -26,6 +27,10 @@ const App = () => {
 
     fetchUsers()
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(users))
+  }, [users])
 
   const addUser = () => {
     if (newUser.name && newUser.email) {
