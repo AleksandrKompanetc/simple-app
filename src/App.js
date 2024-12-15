@@ -38,6 +38,17 @@ const App = () => {
       setNewUser({name: '', email: ''})
     }
   }
+
+  const sortedUsers = [...users].sort((a, b) => 
+    sortOrder = 'asc' 
+    ? a.name.localCompare(b.name)
+    : b.name.localCompare(a.name)
+  )
+
+  const filteredUsers = sortedUsers.filter((user) => 
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <div style={{
       backgroundColor: '#fff',
@@ -77,7 +88,10 @@ const App = () => {
         <button onClick={addUser}>Add User</button>
       </div>
 
-      <button onClick={() => setSortOrder()}>Sorting</button>
+      <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
+        Sort {sortOrder === 'asc' ? 'descending' : 'ascending'}
+      </button>
+
       <ul style={{ listStyle: 'none', padding: 0 }}>
         {users.map((user) => (
           <li key={user.id}>
