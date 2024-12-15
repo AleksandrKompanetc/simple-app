@@ -14,7 +14,6 @@ const App = () => {
       setUsers([...users, {id: users.length + 1, ...newUser}])
       setNewUser({name: '', email: ''})
     }
-    setUsers()
   }
   return (
     <div style={{
@@ -56,6 +55,14 @@ const App = () => {
       </div>
 
       <button onClick={() => setSortOrder()}>Sorting</button>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {users.map((user) => (
+          <li key={user.id}>
+            <span>{user.name}</span>
+
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
