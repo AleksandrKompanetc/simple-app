@@ -122,12 +122,12 @@ const App = () => {
           <p>
             <strong>Email:</strong> {selectedUser.email}
           </p>
-          {selectedUser.company && (
+          {selectedUser.company?.name && (
             <p>
               <strong>Company:</strong> {selectedUser.company.name}
             </p>
           )}
-          {selectedUser.address && (
+          {selectedUser.address?.city && selectedUser.address?.street && (
             <p>
               <strong>Address:</strong> {selectedUser.address.city}, {selectedUser.address.street}
             </p>
