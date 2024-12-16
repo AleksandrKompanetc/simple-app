@@ -34,7 +34,7 @@ const App = () => {
 
   const addUser = () => {
     if (newUser.name && newUser.email) {
-      setUsers([...users, {id: users.length + 1, ...newUser}])
+      setUsers([...users, {id: Date.now(), ...newUser}])
       setNewUser({name: '', email: ''})
     }
   }
@@ -51,8 +51,8 @@ const App = () => {
 
   return (
     <div style={{
-      backgroundColor: '#fff',
-      color: '#000',
+      backgroundColor: darkMode ? '#333' : '#fff',
+      color: darkMode ? '#fff' : '#000',
       minHeight: '100vh',
       padding: '20px',
     }}>
