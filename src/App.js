@@ -11,22 +11,23 @@ const App = () => {
   const [newUser, setNewUser] = useState({name: '', email: ''})
 
   useEffect(() => {
-    const fetchUsers = async() => {
+    const fetchUsers = async () => {
       try {
-        const savedUsers = JSON.parse(localStorage.getItem('users'))
-        if (savedUsers) {
-          setUsers(savedUsers)
+        const savedUsers = JSON.parse(localStorage.getItem('users')) || [];
+        if (savedUsers.length > 0) {
+          setUsers(savedUsers);
         } else {
-          const response = await axios.get('https://jsonplaceholder.typicode.com/users')
-          setUsers(response.data)
+          const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+          setUsers(response.data);
+          localStorage.setItem('users', JSON.stringify(response.data));
         }
-      } catch(error) {
-        console.log('Error fetching users', error)
+      } catch (error) {
+        console.error('Error fetching users:', error);
       }
-    }
+    };
 
-    fetchUsers()
-  }, [])
+    fetchUsers();
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('users', JSON.stringify(users))
@@ -80,6 +81,7 @@ const App = () => {
           placeholder='Name'
           value={newUser.name}
           onChange={(e) => setNewUser({...newUser, name: e.target.value})} 
+          autoFocus
         />
 
         <input 
