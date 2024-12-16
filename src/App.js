@@ -108,6 +108,30 @@ const App = () => {
           </li>
         ))}
       </ul>
+
+      {selectedUser && (
+        <div style={{marginTop: '20px', padding: '10px', border: '1px solid #ccc'}}>
+          <h2>User Details</h2>
+          <p>
+            <strong>Name:</strong>{selectedUser.name}
+          </p>
+          <p>
+            <strong>Email:</strong>{selectedUser.email}
+          </p>
+          {selectedUser.company && (
+            <p>
+              <strong>Company:</strong>{selectedUser.company.name}
+            </p>
+          )}
+          {selectedUser.address && (
+            <p>
+              <strong>Address:</strong>{selectedUser.address.city}, {selectedUser.address.street}
+            </p>
+          )}
+          <button onClick={() => setSelectedUser(null)}>Close</button>
+        </div>
+      )
+      }
     </div>
   )
 }
