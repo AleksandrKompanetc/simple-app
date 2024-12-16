@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import axios from 'axios'
 import './App.css'
 
@@ -39,15 +39,19 @@ const App = () => {
     }
   }
 
-  const sortedUsers = [...users].sort((a, b) => 
-    sortOrder === 'asc' 
+  const sortedUsers = useMemo(() => {
+    return [...users].sort((a, b) =>
+    sortOrder === 'asc'
     ? a.name.localeCompare(b.name)
     : b.name.localeCompare(a.name)
-  )
+    )
+  }, [users, sortOrder])
 
-  const filteredUsers = sortedUsers.filter((user) => 
+  const filteredUsers = useMemo(() => {
+    return sortedUsers.filter((user) => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+    )
+  }, [sortedUsers, searchTerm])
 
   return (
     <div style={{
@@ -113,19 +117,19 @@ const App = () => {
         <div style={{marginTop: '20px', padding: '10px', border: '1px solid #ccc'}}>
           <h2>User Details</h2>
           <p>
-            <strong>Name:</strong>{selectedUser.name}
+            <strong>Name:</strong> {selectedUser.name}
           </p>
           <p>
-            <strong>Email:</strong>{selectedUser.email}
+            <strong>Email:</strong> {selectedUser.email}
           </p>
           {selectedUser.company && (
             <p>
-              <strong>Company:</strong>{selectedUser.company.name}
+              <strong>Company:</strong> {selectedUser.company.name}
             </p>
           )}
           {selectedUser.address && (
             <p>
-              <strong>Address:</strong>{selectedUser.address.city}, {selectedUser.address.street}
+              <strong>Address:</strong> {selectedUser.address.city}, {selectedUser.address.street}
             </p>
           )}
           <button onClick={() => setSelectedUser(null)}>Close</button>
